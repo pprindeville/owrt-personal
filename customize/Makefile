@@ -82,7 +82,7 @@ endef
 
 define Package/disable-openssh-password-login/install
 	$(INSTALL_DIR) -m 0700 $(1)/etc/ssh/sshd_config.d
-	$(INSTALL_DATA) -m 0600 ./files/00-no-password-auth.conf $(1)/etc/ssh/sshd_config.d/
+	$(INSTALL_DATA) -m 0600 ./files/20-no-password-auth.conf $(1)/etc/ssh/sshd_config.d/
 endef
 
 define Package/crontab-for-logrotate
