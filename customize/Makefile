@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=customize
 PKG_VERSION:=1.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 PKG_LICENSE:=GPLv3
 
 PKG_MAINTAINER:=Philip Prindeville <philipp@redfish-solutions.com>
@@ -111,6 +111,13 @@ ifneq ("$(wildcard $(TOPDIR)/files/etc/sensors3.conf)","")
 endif
 ifneq ("$(wildcard $(TOPDIR)/files/etc/syslog-ng.d/*)","")
   DEPENDS+= +syslog-ng
+endif
+  FILE_MODES:=
+ifneq ("$(wildcard $(TOPDIR)/etc/root)","")
+  FILE_MODES+=/root:root:root:750
+endif
+ifneq ("$(wildcard $(TOPDIR)/etc/root/.ssh)","")
+  FILE_MODES+=/root/.ssh:root:root:600
 endif
 endef
 
